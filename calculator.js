@@ -1,4 +1,6 @@
 // calculator.js - Enkla räkneoperationer
+/* eslint-disable no-undef */
+
 
 function add(a, b) {
     return a + b;
