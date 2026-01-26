@@ -1,0 +1,26 @@
+{
+  "name": "calculator-ci",
+  "version": "1.0.0",
+  "description": "En miniräknare med CI/CD",
+  "main": "script.js",
+  "scripts": {
+    "test": "jest",
+    "lint": "eslint ."
+  },
+  "keywords": [
+    "calculator",
+    "ci",
+    "jest"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@eslint/js": "^9.39.2",
+    "eslint": "^9.39.2",
+    "globals": "^17.1.0",
+    "jest": "^29.7.0"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  }
+}
