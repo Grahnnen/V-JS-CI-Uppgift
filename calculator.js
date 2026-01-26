@@ -19,7 +19,15 @@ function divide(a, b) {
     return a / b;
 }
 
-// Exportera för Jest
+// Export for Jest (Node.js)
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = { add, subtract, multiply, divide };
+}
+
+// Attach to window for browser
+if (typeof window !== 'undefined') {
+    window.add = add;
+    window.subtract = subtract;
+    window.multiply = multiply;
+    window.divide = divide;
 }

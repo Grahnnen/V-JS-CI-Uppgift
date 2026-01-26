@@ -1,3 +1,5 @@
+/* global describe, test, expect, require */
+// eslint-env jest
 const { add, subtract, multiply, divide } = require('./calculator.js');
 
 describe('Calculator functions', () => {
