@@ -1,3 +1,6 @@
+/* eslint-env jest, node */
+/* global global */
+
 const WeatherService = require('./WeatherService');
 
 beforeEach(() => {

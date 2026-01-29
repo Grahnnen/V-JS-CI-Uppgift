@@ -1,3 +1,4 @@
+/* eslint-env node */
 class WeatherService {
   async getWeather(city) {
     const controller = new AbortController();
