@@ -9,8 +9,17 @@ export default [
       ...jest.configs.recommended.rules,
     },
     files: ["**/*.test.js"],
-    linterOptions: {
-      env: { jest: true, node: true },
-    },
+    languageOptions: {
+      globals: {
+        test: "readonly",
+        expect: "readonly",
+        jest: "readonly",
+        beforeEach: "readonly",
+        afterEach: "readonly",
+        describe: "readonly",
+        it: "readonly",
+        global: "readonly"
+      }
+    }
   },
 ];
