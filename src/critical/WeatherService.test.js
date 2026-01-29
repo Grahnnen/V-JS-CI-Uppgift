@@ -73,3 +73,42 @@ test('getWeather encodes city parameter', async () => {
     expect.any(Object)
   );
 });
+
+test('getWeather handles empty city', async () => {
+  const fetchMock = jest.spyOn(global, 'fetch').mockResolvedValue({
+    ok: true,
+    json: async () => ({ temperature: 0, condition: 'Unknown' }),
+  });
+  const service = new WeatherService();
+  await service.getWeather('');
+  expect(fetchMock).toHaveBeenCalledWith(
+    expect.stringContaining('city='),
+    expect.any(Object)
+  );
+});
+
+test('getWeather handles null city', async () => {
+  const fetchMock = jest.spyOn(global, 'fetch').mockResolvedValue({
+    ok: true,
+    json: async () => ({ temperature: 0, condition: 'Unknown' }),
+  });
+  const service = new WeatherService();
+  await service.getWeather(null);
+  expect(fetchMock).toHaveBeenCalledWith(
+    expect.stringContaining('city=null'),
+    expect.any(Object)
+  );
+});
+
+test('getWeather handles undefined city', async () => {
+  const fetchMock = jest.spyOn(global, 'fetch').mockResolvedValue({
+    ok: true,
+    json: async () => ({ temperature: 0, condition: 'Unknown' }),
+  });
+  const service = new WeatherService();
+  await service.getWeather(undefined);
+  expect(fetchMock).toHaveBeenCalledWith(
+    expect.stringContaining('city=undefined'),
+    expect.any(Object)
+  );
+});
