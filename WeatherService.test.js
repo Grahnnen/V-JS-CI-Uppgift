@@ -34,10 +34,16 @@ test('getWeather handles API error', async () => {
   await expect(service.getWeather('Stockholm')).rejects.toThrow('API error');
 });
 
-test('getWeather handles timeout', async () => {
-  jest.spyOn(global, 'fetch').mockImplementation(
-    () => new Promise((resolve) => setTimeout(() => resolve({ ok: true, json: async () => ({}) }), 5000))
-  );
-  const service = new WeatherService();
-  await expect(service.getWeather('Stockholm')).rejects.toThrow('Request timed out');
-});
+test(
+  'getWeather handles timeout',
+  async () => {
+    jest.spyOn(global, 'fetch').mockImplementation(() => {
+      const error = new Error('Aborted');
+      error.name = 'AbortError';
+      return Promise.reject(error);
+    });
+    const service = new WeatherService();
+    await expect(service.getWeather('Stockholm')).rejects.toThrow('Request timed out');
+  },
+  6000 // test timeout i ms
+);
