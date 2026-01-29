@@ -43,3 +43,33 @@ test(
   },
   6000 // test timeout i ms
 );
+
+test('getWeather throws on fetch error (not AbortError)', async () => {
+  jest.spyOn(global, 'fetch').mockImplementation(() => {
+    throw new Error('Network error');
+  });
+  const service = new WeatherService();
+  await expect(service.getWeather('Stockholm')).rejects.toThrow('Network error');
+});
+
+test('getWeather throws if response.json() throws', async () => {
+  jest.spyOn(global, 'fetch').mockResolvedValue({
+    ok: true,
+    json: async () => { throw new Error('JSON parse error'); }
+  });
+  const service = new WeatherService();
+  await expect(service.getWeather('Stockholm')).rejects.toThrow('JSON parse error');
+});
+
+test('getWeather encodes city parameter', async () => {
+  const fetchMock = jest.spyOn(global, 'fetch').mockResolvedValue({
+    ok: true,
+    json: async () => ({ temperature: 10, condition: 'Cloudy' }),
+  });
+  const service = new WeatherService();
+  await service.getWeather('Göteborg');
+  expect(fetchMock).toHaveBeenCalledWith(
+    expect.stringContaining('city=G%C3%B6teborg'),
+    expect.any(Object)
+  );
+});
