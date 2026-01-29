@@ -9,7 +9,7 @@ export default [
       ...jest.configs.recommended.rules,
     },
     files: ["**/*.test.js"],
-    languageOptions: {
+    linterOptions: {
       env: { jest: true, node: true },
     },
   },
