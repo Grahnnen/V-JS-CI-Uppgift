@@ -1,10 +1,15 @@
 /* eslint-env jest, node */
 /* global global */
 
+// Se till att fetch finns (för Node <18)
+if (!global.fetch) {
+  global.fetch = require('node-fetch');
+}
+
 const WeatherService = require('./WeatherService');
 
 beforeEach(() => {
-  jest.spyOn(global, 'fetch').mockImplementation();
+  jest.spyOn(global, 'fetch').mockClear();
 });
 
 afterEach(() => {
@@ -12,7 +17,7 @@ afterEach(() => {
 });
 
 test('getWeather returns data', async () => {
-  fetch.mockResolvedValue({
+  jest.spyOn(global, 'fetch').mockResolvedValue({
     ok: true,
     json: async () => ({ temperature: 20, condition: 'Sunny' }),
   });
@@ -24,19 +29,15 @@ test('getWeather returns data', async () => {
 });
 
 test('getWeather handles API error', async () => {
-  fetch.mockResolvedValue({ ok: false });
+  jest.spyOn(global, 'fetch').mockResolvedValue({ ok: false });
   const service = new WeatherService();
   await expect(service.getWeather('Stockholm')).rejects.toThrow('API error');
 });
 
 test('getWeather handles timeout', async () => {
-  fetch.mockImplementation(
+  jest.spyOn(global, 'fetch').mockImplementation(
     () => new Promise((resolve) => setTimeout(() => resolve({ ok: true, json: async () => ({}) }), 5000))
   );
   const service = new WeatherService();
   await expect(service.getWeather('Stockholm')).rejects.toThrow('Request timed out');
 });
-
-if (!global.fetch) {
-  global.fetch = require('node-fetch');
-}
