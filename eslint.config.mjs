@@ -4,6 +4,7 @@ import jest from "eslint-plugin-jest";
 export default [
   {
     ...js.configs.recommended,
+    files: ["**/*.js"],
     languageOptions: {
       globals: {
         require: "readonly",
