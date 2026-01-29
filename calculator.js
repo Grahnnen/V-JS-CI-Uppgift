@@ -21,12 +21,13 @@ function divide(a, b) {
     return a / b;
 }
 
-// Export for Jest (Node.js)
+/* istanbul ignore next */
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = { add, subtract, multiply, divide };
 }
 
 // Attach to window for browser
+/* istanbul ignore next */
 if (typeof window !== 'undefined') {
     window.add = add;
     window.subtract = subtract;

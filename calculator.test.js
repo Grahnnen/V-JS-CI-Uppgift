@@ -87,3 +87,61 @@ describe('edge cases for calculator', () => {
     expect(divide(10, 1)).toBe(10);
   });
 });
+
+describe('additional edge cases for calculator', () => {
+  test('add with large numbers', () => {
+    expect(add(1e6, 1e6)).toBe(2e6);
+  });
+
+  test('subtract with large numbers', () => {
+    expect(subtract(1e6, 1e5)).toBe(900000);
+  });
+
+  test('multiply with large numbers', () => {
+    expect(multiply(1e3, 1e3)).toBe(1e6);
+  });
+
+  test('divide with large numbers', () => {
+    expect(divide(1e6, 1e3)).toBe(1000);
+  });
+
+  test('add with NaN', () => {
+    expect(add(NaN, 5)).toBeNaN();
+    expect(add(5, NaN)).toBeNaN();
+  });
+
+  test('subtract with NaN', () => {
+    expect(subtract(NaN, 5)).toBeNaN();
+    expect(subtract(5, NaN)).toBeNaN();
+  });
+
+  test('multiply with NaN', () => {
+    expect(multiply(NaN, 5)).toBeNaN();
+    expect(multiply(5, NaN)).toBeNaN();
+  });
+
+  test('divide with NaN', () => {
+    expect(divide(NaN, 5)).toBeNaN();
+    expect(divide(5, NaN)).toBeNaN();
+  });
+
+  test('add with Infinity', () => {
+    expect(add(Infinity, 1)).toBe(Infinity);
+    expect(add(-Infinity, 1)).toBe(-Infinity);
+  });
+
+  test('subtract with Infinity', () => {
+    expect(subtract(Infinity, 1)).toBe(Infinity);
+    expect(subtract(-Infinity, 1)).toBe(-Infinity);
+  });
+
+  test('multiply with Infinity', () => {
+    expect(multiply(Infinity, 2)).toBe(Infinity);
+    expect(multiply(-Infinity, 2)).toBe(-Infinity);
+  });
+
+  test('divide with Infinity', () => {
+    expect(divide(Infinity, 2)).toBe(Infinity);
+    expect(divide(-Infinity, 2)).toBe(-Infinity);
+  });
+});
