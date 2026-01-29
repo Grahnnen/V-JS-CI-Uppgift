@@ -2,7 +2,7 @@ if (!global.fetch) {
   global.fetch = require('node-fetch');
 }
 
-const WeatherService = require('../../WeatherService');
+const WeatherService = require('./WeatherService');
 
 beforeEach(() => {
   jest.spyOn(global, 'fetch').mockClear();
