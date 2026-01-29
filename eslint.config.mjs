@@ -8,5 +8,9 @@ export default [
     rules: {
       ...jest.configs.recommended.rules,
     },
+    files: ["**/*.test.js"],
+    languageOptions: {
+      env: { jest: true, node: true },
+    },
   },
 ];
