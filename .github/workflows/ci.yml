@@ -7,31 +7,50 @@ on:
     branches: [ main, dev ]
 
 jobs:
+
+
   test:
     runs-on: ubuntu-latest
-    
+    timeout-minutes: 10
+    strategy:
+      fail-fast: true
+      matrix:
+        node-version: [18, 20, 22]
     steps:
       - uses: actions/checkout@v4
-      
+
+      - name: Cache npm dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ matrix.node-version }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-${{ matrix.node-version }}-
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: ${{ matrix.node-version }}
           cache: 'npm'
-      
+
       - name: Install dependencies
         run: npm ci
-      
+
       - name: Run linter
         run: npm run lint
-      
+
       - name: Run tests with coverage
         run: npm test -- --coverage
-        
+
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v5
         with:
           fail_ci_if_error: false
         env:
           token: ${{ secrets.CODECOV_TOKEN }}
+
+      - name: Show Node.js version and job status
+        if: failure()
+        run: |
+          echo "Job failed on Node.js ${{ matrix.node-version }}"
           
