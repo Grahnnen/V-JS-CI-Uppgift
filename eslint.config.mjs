@@ -14,8 +14,7 @@ export default [
         AbortController: "readonly",
         fetch: "readonly",
       }
-    },
-    env: { node: true }
+    }
   },
   {
     plugins: { jest },
