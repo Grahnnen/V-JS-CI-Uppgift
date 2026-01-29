@@ -37,6 +37,7 @@
         "functions": 100,
         "branches": 100
       }
-    }
+    },
+    "coverageReporters": ["json", "lcov"]
   }
 }
