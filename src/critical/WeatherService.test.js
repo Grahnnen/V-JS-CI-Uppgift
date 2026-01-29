@@ -112,3 +112,8 @@ test('getWeather handles undefined city', async () => {
     expect.any(Object)
   );
 });
+
+test('WeatherService class can be instantiated', () => {
+  const service = new WeatherService();
+  expect(service).toBeInstanceOf(WeatherService);
+});
