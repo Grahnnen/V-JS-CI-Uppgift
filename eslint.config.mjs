@@ -30,9 +30,17 @@ export default [
         beforeEach: "readonly",
         afterEach: "readonly",
         describe: "readonly",
-        it: "readonly",
-        global: "readonly"
+        it: "readonly"
       }
     }
   },
+  {
+    files: ["script.js"],
+    languageOptions: {
+      globals: {
+        window: "readonly",
+        document: "readonly"
+      }
+    }
+  }
 ];

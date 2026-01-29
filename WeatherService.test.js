@@ -1,7 +1,3 @@
-/* eslint-env jest, node */
-/* global global */
-
-// Se till att fetch finns (för Node <18)
 if (!global.fetch) {
   global.fetch = require('node-fetch');
 }
