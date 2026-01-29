@@ -10,12 +10,13 @@ jobs:
 
 
   test:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     timeout-minutes: 10
     strategy:
       fail-fast: true
       matrix:
-        node-version: [18, 20, 22]
+        node-version: [16.x, 18.x, 20.x]
+        os: [ubuntu-latest, windows-latest, macos-latest]
     steps:
       - uses: actions/checkout@v4
 
@@ -53,4 +54,3 @@ jobs:
         if: failure()
         run: |
           echo "Job failed on Node.js ${{ matrix.node-version }}"
-          
