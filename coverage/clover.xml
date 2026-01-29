@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1769680218743" clover="3.2.0">
-  <project timestamp="1769680218743" name="All files">
-    <metrics statements="16" coveredstatements="16" conditionals="6" coveredconditionals="6" methods="6" coveredmethods="5" elements="28" coveredelements="27" complexity="0" loc="16" ncloc="16" packages="2" files="2" classes="2"/>
+<coverage generated="1769680892506" clover="3.2.0">
+  <project timestamp="1769680892506" name="All files">
+    <metrics statements="17" coveredstatements="17" conditionals="6" coveredconditionals="6" methods="8" coveredmethods="8" elements="31" coveredelements="31" complexity="0" loc="17" ncloc="17" packages="2" files="2" classes="2"/>
     <package name="JS-CI-Uppgift">
       <metrics statements="6" coveredstatements="6" conditionals="2" coveredconditionals="2" methods="4" coveredmethods="4"/>
       <file name="calculator.js" path="C:\Users\Avi\OneDrive\Skrivbord\Systemutveckling .net\HTML\JS-CI-Uppgift\calculator.js">
@@ -15,19 +15,20 @@
       </file>
     </package>
     <package name="JS-CI-Uppgift.src.critical">
-      <metrics statements="10" coveredstatements="10" conditionals="4" coveredconditionals="4" methods="2" coveredmethods="1"/>
+      <metrics statements="11" coveredstatements="11" conditionals="4" coveredconditionals="4" methods="4" coveredmethods="4"/>
       <file name="WeatherService.js" path="C:\Users\Avi\OneDrive\Skrivbord\Systemutveckling .net\HTML\JS-CI-Uppgift\src\critical\WeatherService.js">
-        <metrics statements="10" coveredstatements="10" conditionals="4" coveredconditionals="4" methods="2" coveredmethods="1"/>
-        <line num="3" count="9" type="stmt"/>
-        <line num="4" count="9" type="stmt"/>
-        <line num="6" count="9" type="stmt"/>
-        <line num="7" count="9" type="stmt"/>
-        <line num="11" count="7" type="stmt"/>
-        <line num="12" count="7" type="cond" truecount="2" falsecount="0"/>
-        <line num="13" count="6" type="stmt"/>
-        <line num="15" count="4" type="cond" truecount="2" falsecount="0"/>
-        <line num="16" count="3" type="stmt"/>
-        <line num="21" count="1" type="stmt"/>
+        <metrics statements="11" coveredstatements="11" conditionals="4" coveredconditionals="4" methods="4" coveredmethods="4"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="7" count="10" type="stmt"/>
+        <line num="8" count="10" type="stmt"/>
+        <line num="10" count="10" type="stmt"/>
+        <line num="11" count="10" type="stmt"/>
+        <line num="15" count="7" type="stmt"/>
+        <line num="16" count="7" type="cond" truecount="2" falsecount="0"/>
+        <line num="17" count="6" type="stmt"/>
+        <line num="19" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="20" count="3" type="stmt"/>
+        <line num="25" count="1" type="stmt"/>
       </file>
     </package>
   </project>

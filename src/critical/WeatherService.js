@@ -1,4 +1,8 @@
 class WeatherService {
+  constructor() {}
+  static info() {
+    return 'WeatherService';
+  }
   async getWeather(city) {
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 3000);

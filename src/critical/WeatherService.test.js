@@ -117,3 +117,25 @@ test('WeatherService class can be instantiated', () => {
   const service = new WeatherService();
   expect(service).toBeInstanceOf(WeatherService);
 });
+
+test('WeatherService static info returns correct value', () => {
+  expect(WeatherService.info()).toBe('WeatherService');
+});
+
+test('getWeather triggers setTimeout abort callback', async () => {
+  jest.useFakeTimers();
+  jest.spyOn(global, 'fetch').mockImplementation((url, opts) => {
+    return new Promise((_, reject) => {
+      opts.signal.addEventListener('abort', () => {
+        const error = new Error('Aborted');
+        error.name = 'AbortError';
+        reject(error);
+      });
+    });
+  });
+  const service = new WeatherService();
+  const promise = service.getWeather('Stockholm');
+  jest.advanceTimersByTime(3000);
+  await expect(promise).rejects.toThrow('Request timed out');
+  jest.useRealTimers();
+}, 10000);
