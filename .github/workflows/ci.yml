@@ -46,7 +46,7 @@ jobs:
         run: |
           npm test -- --coverage
           if [ $(jq -r '.total.lines.pct' coverage/coverage-summary.json) -lt 90 ]; then
-            echo "Coverage below 90%!"
+            echo "Coverage below threshold"
             exit 1
           fi
 
@@ -56,6 +56,14 @@ jobs:
           fail_ci_if_error: false
         env:
           token: ${{ secrets.CODECOV_TOKEN }}
+
+      - name: Fail if coverage is below threshold
+        run: |
+          if [ $(jq -r '.total.lines.pct' coverage/coverage-summary.json) -lt 90 ]; then
+            echo "Coverage below threshold"
+            exit 1
+          fi
+        shell: bash
 
       - name: Show Node.js version and job status
         if: failure()
