@@ -54,3 +54,36 @@ describe('Calculator functions', () => {
         });
     });
 });
+
+describe('edge cases for calculator', () => {
+  test('add with zero', () => {
+    expect(add(0, 0)).toBe(0);
+    expect(add(0, 5)).toBe(5);
+    expect(add(5, 0)).toBe(5);
+  });
+
+  test('subtract with zero', () => {
+    expect(subtract(0, 0)).toBe(0);
+    expect(subtract(0, 5)).toBe(-5);
+    expect(subtract(5, 0)).toBe(5);
+  });
+
+  test('multiply with decimals', () => {
+    expect(multiply(2.5, 4)).toBeCloseTo(10);
+    expect(multiply(-2.5, 4)).toBeCloseTo(-10);
+  });
+
+  test('divide negative numbers', () => {
+    expect(divide(-10, 2)).toBe(-5);
+    expect(divide(10, -2)).toBe(-5);
+    expect(divide(-10, -2)).toBe(5);
+  });
+
+  test('divide with decimals', () => {
+    expect(divide(5, 2.5)).toBe(2);
+  });
+
+  test('divide by one', () => {
+    expect(divide(10, 1)).toBe(10);
+  });
+});
