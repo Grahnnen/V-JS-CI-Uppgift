@@ -30,7 +30,8 @@ export default [
         beforeEach: "readonly",
         afterEach: "readonly",
         describe: "readonly",
-        it: "readonly"
+        it: "readonly",
+        global: "readonly",
       }
     }
   },
@@ -39,8 +40,8 @@ export default [
     languageOptions: {
       globals: {
         window: "readonly",
-        document: "readonly"
+        document: "readonly",
       }
     }
-  }
+  },
 ];
