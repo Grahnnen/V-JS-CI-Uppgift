@@ -4,11 +4,11 @@
 const WeatherService = require('./WeatherService');
 
 beforeEach(() => {
-  global.fetch = jest.fn();
+  jest.spyOn(global, 'fetch').mockImplementation();
 });
 
 afterEach(() => {
-  jest.clearAllMocks();
+  jest.restoreAllMocks();
 });
 
 test('getWeather returns data', async () => {
@@ -36,3 +36,7 @@ test('getWeather handles timeout', async () => {
   const service = new WeatherService();
   await expect(service.getWeather('Stockholm')).rejects.toThrow('Request timed out');
 });
+
+if (!global.fetch) {
+  global.fetch = require('node-fetch');
+}
